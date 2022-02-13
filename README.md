@@ -1,33 +1,34 @@
-<p align="center">  
-The dotfiles plugin is the start point to create something similar to <a href="https://dotfiles.github.io/">dotfiles project</a> for xxh.
+<p align="center">
+[dotbare](https://github.com/kazhala/dotbare) plugin for <a href="https://github.com/xxh/xxh-shell-bash">xxh-shell-bash</a>.
 </p>
 
-<p align="center">  
-If you like the idea of xxh click ⭐ on the repo and stay tuned.
-</p>
+## Requirements
 
-The `home` directory contains the files which will be copied to xxh home directory (default `/home/user/.xxh/`) before running shell. 
-The [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) directory `.config` 
-will be copied to `$XDG_CONFIG_HOME` (default `/home/user/.xxh/.config`). Learn more about [home settings in docs](https://github.com/xxh/xxh/wiki#how-to-set-homeuser-as-home-on-host).
+Prior to using this plugin, you should already be using [the excellent dotbare](https://github.com/kazhala/dotbare) and have your dotfiles under version control.
+
+To configure you must define your github repo hosting your dotfiles (not the actual `dotbare` repo).  Export that in your [~/.config/xxh/config.xxhc] like this:
+
+
+```yaml
+hosts:
+  ".*":                       # for all hosts
+    +e:                       # simple environment variables
+      - DOTBARE_REPO="drmikecrowe/baredotfiles"
+```
 
 ## Note!
-The plugin copy files only once during first start. It copies the files from plugin home directory to the host xxh home direcotry 
-as addition and without replacing. It means if you hadn't the directory it will appear. If you have directory with files 
+The plugin copy files only once during first start. It copies the files from plugin home directory to the host xxh home directory
+as addition and without replacing. It means if you hadn't the directory it will appear. If you have directory with files
 but without the file from plugin home it just appears.
 
-Be carefully if you are using [non-hermetic environment](https://github.com/xxh/xxh/wiki#how-to-set-homeuser-as-home-on-host) by using `+hhh '~' +hhx '~'` arguments.  
+Be carefully if you are using [non-hermetic environment](https://github.com/xxh/xxh/wiki#how-to-set-homeuser-as-home-on-host) by using `+hhh '~' +hhx '~'` arguments.
 
 ## Install
 From xxh repo:
 ```bash
-xxh +I xxh-plugin-prerun-dotfiles
-# or from any Github repo: xxh +I https://github.com/xxh/xxh-plugin-prerun-dotfiles
+xxh +I https://github.com/drmikecrowe/xxh-plugin-prerun-dotbare
 ```
 Connect:
 ```
 xxh yourhost +if
 ```
-
-## Preinstall PyPi packages
-Add PyPi packages to `pip-requirements.txt` and they will be in `$XXH_HOME/.local`. 
-This is compatible with [xxh-shell-xonsh](https://github.com/xxh/xxh-shell-xonsh), [xxh-plugin-prerun-python](https://github.com/xxh/xxh-plugin-prerun-python) and `pip install --user`. 
